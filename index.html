@@ -3,65 +3,146 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IMU-Web — Home</title>
-  <meta name="description" content="IMU-Web — free static website hosted on GitHub Pages." />
+  <title>InjectMyau — Release History</title>
+  <meta name="description" content="Release history for SkidderiumX/InjectMyau-Unarchive. OpenMyau but better, injectable Lunar / Badlion." />
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐈</text></svg>" />
 </head>
 <body>
   <header class="site-header">
     <div class="container nav">
-      <a class="logo" href="./">IMU-Web</a>
+      <a class="logo" href="./">🐈 InjectMyau <span class="muted">/ releases</span></a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <nav class="links">
-        <a href="#features">Features</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a class="btn" href="https://github.com/">GitHub</a>
+        <a href="#releases">History</a>
+        <a href="#pre-channel">Pre-posting</a>
+        <a href="https://github.com/SkidderiumX/InjectMyau-Unarchive" target="_blank" rel="noopener">Source</a>
+        <a class="btn secondary" id="pre-dl-btn" href="#pre-channel" title="Download pre-posting bundle">⬇ Pre</a>
+        <a class="btn" id="latest-btn" href="#" target="_blank" rel="noopener">⬇ Latest</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero container">
-      <h1>Free website with GitHub Pages</h1>
-      <p>Static, fast, HTTPS by default. Edit this page, push to <code>main</code>, and you're live.</p>
-      <div class="actions">
-        <a class="btn primary" href="#features">Learn more</a>
-        <a class="btn" href="#contact">Get in touch</a>
+  <main class="container">
+    <section class="hero">
+      <h1>InjectMyau-Unarchive</h1>
+      <p>OpenMyau. But better and injectable Lunar, Badlion. Also update :3</p>
+      <p class="meta">
+        <span>Java</span> · <span>GPL-3.0</span> ·
+        <a href="https://github.com/SkidderiumX/InjectMyau-Unarchive" target="_blank" rel="noopener">SkidderiumX/InjectMyau-Unarchive</a>
+        <span id="rate-note"></span>
+      </p>
+      <div id="stats" class="stats">
+        <div class="stat"><b id="stat-releases">–</b><span>releases</span></div>
+        <div class="stat"><b id="stat-downloads">–</b><span>downloads</span></div>
+        <div class="stat"><b id="stat-latest">–</b><span>latest</span></div>
+        <div class="stat"><b id="stat-updated">–</b><span>updated</span></div>
       </div>
     </section>
 
-    <section id="features" class="container grid-3">
-      <div class="card">
-        <h2>Fast</h2>
-        <p>No backend, no database. Just HTML, CSS, and JS served via CDN.</p>
+    <section id="pre-channel" class="card pre-channel">
+      <h2>Pre-posting channel — DLL pre-upload</h2>
+      <p class="status">Gated staging area. Enter invite code to unlock DLL pre-uploads.<br />
+        Format: <code>IMU_AC_RL_&lt;18 chars&gt;</code> (Release) or <code>IMU_AC_B_&lt;18 chars&gt;</code> (Beta).
+        Example: <code>IMU_AC_RL_aaabbbccc111222333</code><br />
+        Preview (view-only): <code>IMU_AC_RL_PREVIEWKEYAC1</code></p>
+      <div class="invite-row">
+        <input id="invite-code" type="text" placeholder="IMU_AC_RL_…" autocomplete="off" spellcheck="false" />
+        <button id="invite-unlock" class="btn primary">Unlock</button>
+        <button id="invite-lock" class="btn">Lock</button>
       </div>
-      <div class="card">
-        <h2>Free</h2>
-        <p>1 GB storage, 100 GB bandwidth/mo, free HTTPS on <code>*.github.io</code>.</p>
+      <p id="invite-msg" class="status"></p>
+      <div class="ackey-box">
+        <h3>Saved keys — ACKEY.md</h3>
+        <p class="status">Vault kept in this browser + portable via <a href="src/ACKEY.md">ACKEY.md</a>.</p>
+        <div class="invite-row">
+          <button id="save-key" class="btn">Save current key</button>
+          <button id="export-ackey" class="btn">Export ACKEY.md</button>
+          <button id="import-ackey-btn" class="btn">Load ACKEY.md</button>
+          <input id="import-ackey" type="file" accept=".md,.txt" hidden />
+        </div>
+        <p id="ackey-msg" class="status"></p>
+        <div id="saved-keys" class="staged"></div>
       </div>
-      <div class="card">
-        <h2>Simple deploy</h2>
-        <p>Push to <code>main</code>. GitHub Actions deploys automatically.</p>
+      <div id="pre-panel" hidden>
+        <p>Channel: <span id="channel-badge" class="badge"></span> <span id="channel-desc" class="status"></span></p>
+        <div id="pre-assets-wrap">
+          <h3>Channel DLLs (from releases)</h3>
+          <div id="pre-assets" class="status">Unlock to view.</div>
+        </div>
+        <h3>Channel A — DLLs upload (same key)</h3>
+        <div id="dropzone" class="dropzone" tabindex="0" role="button" aria-label="Drop files here or click to browse">
+          <div class="dz-icon">📥</div>
+          <div><b>Drag &amp; drop .dll / .exe / .jar here</b></div>
+          <div class="status">or <button id="browse-btn" type="button" class="btn">Select from desktop</button></div>
+          <div id="dz-file" class="status"></div>
+          <input id="dll-file" type="file" accept=".dll,.exe,.jar" multiple hidden />
+        </div>
+        <div class="invite-row">
+          <input id="dll-notes" type="text" placeholder="Notes for this pre-upload (optional)" />
+          <button id="stage-btn" class="btn">Stage DLL(s)</button>
+        </div>
+        <p id="stage-msg" class="status"></p>
+        <h3>Staged DLLs (this browser only)</h3>
+        <div id="staged-list" class="staged"></div>
+
+        <h3>Channel B — Changelogs upload (same key)</h3>
+        <div id="dropzone-log" class="dropzone" tabindex="0" role="button" aria-label="Drop changelog files here or click to browse">
+          <div class="dz-icon">📝</div>
+          <div><b>Drag &amp; drop .md / .txt changelogs here</b></div>
+          <div class="status">or <button id="browse-log-btn" type="button" class="btn">Select from desktop</button></div>
+          <div id="dz-log-file" class="status"></div>
+          <input id="log-file" type="file" accept=".md,.txt,.json" multiple hidden />
+        </div>
+        <div class="invite-row">
+          <input id="log-version" type="text" placeholder="Version / tag e.g. Beta261013+1" />
+          <input id="log-notes" type="text" placeholder="Changelog summary (optional)" />
+          <button id="stage-log-btn" class="btn">Stage changelog(s)</button>
+        </div>
+        <p id="log-msg" class="status"></p>
+        <h3>Staged changelogs (this browser only)</h3>
+        <div id="staged-logs" class="staged"></div>
+        <div class="card-foot">
+          <button id="export-json" class="btn">Copy staging JSON (DLLs + changelogs)</button>
+          <button id="clear-staged" class="btn">Clear DLLs</button>
+          <button id="clear-logs" class="btn">Clear changelogs</button>
+        </div>
+
+        <h3>Pre-download — downloadable link from pre-posting</h3>
+        <p class="status">Builds a file link from what you staged above. Same key required. Preview key gets channel DLL links only.</p>
+        <div class="invite-row">
+          <button id="dl-bundle" class="btn primary">⬇ Download pre-bundle (.json)</button>
+          <button id="dl-logs-md" class="btn">⬇ Changelogs (.md)</button>
+          <button id="copy-pre-link" class="btn">Copy pre link</button>
+        </div>
+        <p id="predl-msg" class="status"></p>
+        <div id="predl-links" class="staged"></div>
       </div>
     </section>
 
-    <section id="about" class="container narrow">
-      <h2>About</h2>
-      <p>Replace this text with your project description. This starter lives in <code>index.html:1</code> and is styled by <code>assets/css/style.css:1</code> with interactivity in <code>assets/js/main.js:1</code>.</p>
+    <section class="toolbar">
+      <input id="q" type="search" placeholder="Search tag, name, notes, asset…" autocomplete="off" />
+      <select id="filter">
+        <option value="all">All releases</option>
+        <option value="assets">With downloads</option>
+        <option value="prerelease">Prereleases only</option>
+      </select>
+      <select id="sort">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="downloads">Most downloaded</option>
+      </select>
+      <button id="refresh" class="btn" title="Refetch from GitHub API">↻ Refresh</button>
     </section>
 
-    <section id="contact" class="container narrow">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:hello@example.com">hello@example.com</a></p>
-    </section>
+    <p id="status" class="status">Loading releases from GitHub API…</p>
+    <section id="releases" class="timeline"></section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
-      <span>© <span id="year"></span> IMU-Web.</span>
-      <a href="404.html">404 test</a>
+      <span>© <span id="year"></span> IMU-Web · Data: GitHub API · <a href="releases.json">releases.json</a></span>
+      <a href="https://github.com/SkidderiumX/InjectMyau-Unarchive/releases" target="_blank" rel="noopener">GitHub Releases</a>
     </div>
   </footer>
 
