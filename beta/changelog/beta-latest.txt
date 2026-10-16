@@ -1,8 +1,8 @@
 InjectMyau beta changelog
 ==========================
 
-No beta changelog published yet.
-
-How to publish: add any `.txt` file to the `beta/changelog/` folder in this
-repository. The file name does not matter. The page at /betachangelog picks
-it up automatically.
+testing
+"dhojkhk"
+'dfgdfg'
+*nkjhkjfdg*
+**sdfsdf**
