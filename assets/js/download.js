@@ -112,7 +112,8 @@
       var res = await fetch(first.url, { cache: 'no-store' });
       var text = res.ok ? await res.text() : '';
       prev.innerHTML = '<h2>Latest: ' + esc(first.name) + '</h2><pre class="notes">' +
-        esc(text.slice(0, 8000) || '(empty file)') + '</pre>';
+        esc(text.slice(0, 8000) || '(empty file)') + '</pre>' +
+        '<p><a class="btn" href="' + esc(first.url) + '" download>Download ' + esc(first.name) + '</a></p>';
     } catch (e) {
       prev.innerHTML = '';
     }
