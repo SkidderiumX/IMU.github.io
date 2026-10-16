@@ -3,9 +3,6 @@ InjectMyau release changelog
 
 No release changelog published yet.
 
-How to publish: add a `.txt` file to the `release/changelog/` folder in this
-repository and list it in `release/changelog/manifest.json`, e.g.:
-
-  { "files": ["release-261013-1.txt"] }
-
-The page at /releasechangelog picks it up automatically.
+How to publish: add any `.txt` file to the `release/changelog/` folder in this
+repository. The file name does not matter. The page at /releasechangelog
+picks it up automatically.

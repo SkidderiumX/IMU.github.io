@@ -15,12 +15,12 @@ and changelogs. Hosted free on GitHub Pages.
 
 ## Publishing files
 
-1. Add the `.dll` to `beta/dll/` or `release/dll/`.
-2. Add the changelog `.txt` to `beta/changelog/` or `release/changelog/`.
-3. Update the sibling `manifest.json` (`{ "files": ["name.ext"] }`) as offline
-   fallback. Online, pages list folder contents via the GitHub Contents API,
-   so no manifest edit is strictly required.
-4. Commit and push. Pages redeploys automatically.
+1. Add the `.dll` to `beta/dll/` or `release/dll/` and update the sibling
+   `manifest.json` (`{ "files": ["name.ext"] }`) as offline fallback. Online,
+   DLL pages also list folder contents via the GitHub Contents API.
+2. Add any changelog `.txt` to `beta/changelog/` or `release/changelog/`.
+   The file name does not matter. No manifest needed. Commit and push.
+   Pages redeploys automatically and the changelog pages pick the file up.
 
 The homepage "Last GitHub release" box reads
 `SkidderiumX/InjectMyau-Unarchive` (latest release API) with `releases.json`

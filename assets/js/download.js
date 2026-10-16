@@ -74,15 +74,18 @@
       }
     } catch (e) { /* fall through to manifest */ }
 
-    // 2. Local manifest fallback (works offline / on localhost / when rate-limited).
-    try {
-      var mres = await fetch(MANIFEST_URL, { cache: 'no-store' });
-      if (mres.ok) {
-        var manifest = await mres.json();
-        var mfiles = fromManifest(manifest && manifest.files);
-        return { files: mfiles, source: 'manifest.json' };
-      }
-    } catch (e) { /* fall through */ }
+    // 2. Local manifest fallback (DLL folders only; changelog folders have no
+    //    manifest - any .txt name works via the repository listing above).
+    if (KIND === 'dll') {
+      try {
+        var mres = await fetch(MANIFEST_URL, { cache: 'no-store' });
+        if (mres.ok) {
+          var manifest = await mres.json();
+          var mfiles = fromManifest(manifest && manifest.files);
+          return { files: mfiles, source: 'manifest.json' };
+        }
+      } catch (e) { /* fall through */ }
+    }
 
     return { files: [], source: 'none' };
   }
