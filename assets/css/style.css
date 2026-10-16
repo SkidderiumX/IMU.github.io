@@ -11,6 +11,10 @@
   --max: 980px;
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
 a { color: var(--accent); }
 .container { max-width: var(--max); margin: 0 auto; padding: 0 1rem; }
