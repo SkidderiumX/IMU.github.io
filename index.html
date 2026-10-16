@@ -15,7 +15,7 @@
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">Menu</button>
       <nav class="links">
         <a href="#about">Overview</a>
-        <a href="#last-release">Last release</a>
+        <a href="#all-releases">All releases</a>
         <a href="https://github.com/SkidderiumX/InjectMyau-Unarchive" target="_blank" rel="noopener">GitHub</a>
       </nav>
     </div>
@@ -24,22 +24,13 @@
   <main class="container">
     <section class="hero" id="about">
       <h1>InjectMyau</h1>
-      <p>InjectMyau is a Minecraft client based on OpenMyau, with injection support for Lunar and Badlion clients. This site hosts changelogs and tracks the latest GitHub release.</p>
+      <p>InjectMyau is a Minecraft client based on OpenMyau, with injection support for Lunar and Badlion clients. This site hosts changelogs and lists all GitHub releases.</p>
     </section>
 
-    <section id="files">
-      <h2>File layout</h2>
-      <p class="status">To publish a file, add it to the matching folder in the site repository. The route pages pick it up automatically.</p>
-      <pre class="notes">beta/dll/          -&gt; /beta             (beta DLL download)
-beta/changelog/    -&gt; /betachangelog   (beta changelog .txt)
-release/dll/       -&gt; /release          (release DLL download)
-release/changelog/ -&gt; /releasechangelog (release changelog .txt)</pre>
-    </section>
-
-    <section id="last-release">
-      <h2>Last GitHub release</h2>
+    <section id="all-releases">
+      <h2>All releases</h2>
       <p class="status">Source: <a href="https://github.com/SkidderiumX/InjectMyau-Unarchive/releases">SkidderiumX/InjectMyau-Unarchive</a> <span id="release-source"></span></p>
-      <div id="last-release-box" class="card"><p class="status">Loading latest release...</p></div>
+      <div id="all-releases-list" class="timeline"><p class="status">Loading releases...</p></div>
     </section>
   </main>
 
