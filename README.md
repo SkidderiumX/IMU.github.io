@@ -1,38 +1,34 @@
 # IMU-Web
 
-Free static website hosted on GitHub Pages.
+Simple overview site for the InjectMyau client, with beta/release DLL downloads
+and changelogs. Hosted free on GitHub Pages.
+
+## Routes
+
+| URL | Source folder | Behaviour |
+|-----|---------------|-----------|
+| `/` | `index.html` | Overview, download cards, last GitHub release |
+| `/beta` | `beta/dll/` | Lists DLLs, auto-downloads the first file |
+| `/betachangelog` | `beta/changelog/` | Shows and downloads beta changelog `.txt` files |
+| `/release` | `release/dll/` | Lists DLLs, auto-downloads the first file |
+| `/releasechangelog` | `release/changelog/` | Shows and downloads release changelog `.txt` files |
+
+## Publishing files
+
+1. Add the `.dll` to `beta/dll/` or `release/dll/`.
+2. Add the changelog `.txt` to `beta/changelog/` or `release/changelog/`.
+3. Update the sibling `manifest.json` (`{ "files": ["name.ext"] }`) as offline
+   fallback. Online, pages list folder contents via the GitHub Contents API,
+   so no manifest edit is strictly required.
+4. Commit and push. Pages redeploys automatically.
+
+The homepage "Last GitHub release" box reads
+`SkidderiumX/InjectMyau-Unarchive` (latest release API) with `releases.json`
+as offline fallback.
 
 ## Local preview
 
-Just open `index.html` in a browser, or run:
-
 ```powershell
-# Python 3
-python -m http.server 8000
-# then open http://localhost:8000/
+python -m http.server 3000
+# then open http://localhost:3000/
 ```
-
-## Deploy (free)
-
-1. Create a public GitHub repo (e.g. `IMU-Web`)
-2. Push this folder to `main`:
-```powershell
-git init
-git add .
-git commit -m "init pages site"
-git branch -M main
-git remote add origin https://github.com/USERNAME/REPO.git
-git push -u origin main
-```
-3. Repo > Settings > Pages > Source: **GitHub Actions**
-4. Wait ~1 min. Live at `https://USERNAME.github.io/REPO/`
-
-Workflow is in `.github/workflows/pages.yml:1`.
-No build step — pure HTML/CSS/JS.
-
-## Edit
-
-- Content: `index.html`
-- Styles: `assets/css/style.css`
-- Script: `assets/js/main.js`
-- 404 page: `404.html`

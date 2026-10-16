@@ -41,6 +41,8 @@ a { color: var(--accent); }
 .btn.secondary, #pre-dl-btn { border-color: var(--accent); color: var(--accent); font-weight: 700; }
 
 .status { color: var(--muted); }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.grid-3 .card h3 { margin-top: 0; }
 .timeline { display: grid; gap: 1rem; padding-bottom: 3rem; }
 .card { background: var(--panel); border: 1px solid #334155; border-radius: var(--radius); padding: 1.1rem 1.2rem; }
 .card.latest { border-color: var(--green); }
