@@ -7,7 +7,7 @@
   'use strict';
 
   var body = document.body;
-  var REPO = body.getAttribute('data-repo') || 'SkidderiumX/SkidderiumX.github.io';
+  var REPO = body.getAttribute('data-repo') || 'SkidderiumX/IMU.github.io';
   var DIR = body.getAttribute('data-dir') || 'beta/dll';
   var KIND = body.getAttribute('data-kind') || 'dll'; // 'dll' | 'changelog'
   var LOCAL_BASE = body.getAttribute('data-local-base') || 'dll/';
